@@ -2,15 +2,18 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Utils;
-
+using UnityStandardAssets.ImageEffects;
 public class MusicPlayer : MonoBehaviour {
 	
 	private int channelcount = 5;
 
 	private List <MelodyGenerator> generators;
-
+    public static GameObject mainCam;
+    public Color[] lightColors = { Color.red, Color.black, Color.blue, Color.green, Color.cyan, Color.magenta, Color.yellow, Color.white, Color.clear };
+    public GameObject dirLight;
 	public void Start()
 	{
+        mainCam = transform.GetChild(0).gameObject;
 		for (int i=0;i<channelcount;i++)
 		{
 			AudioSource a_s = this.gameObject.AddComponent<AudioSource>();
@@ -51,7 +54,7 @@ public class MusicPlayer : MonoBehaviour {
 		int velocityindex=0;
 		int sampleindex=0;		
 		int channelindex=0;
-		
+        float tempRand = Random.Range(0f, 100f);
 		AudioSource[] audiosources = GetComponents<AudioSource>();
 		
 		while(true)
@@ -60,7 +63,17 @@ public class MusicPlayer : MonoBehaviour {
 			float duration = melody.durations[durationindex];
 			float velocity = melody.volumes[velocityindex]/2;
 			AudioClip sample = melody.sounds[sampleindex];
-			
+
+            //Debug.Log("DurationIndex "+durationindex);
+            //Debug.Log("PitchIndex " + pitchindex);
+            //Debug.Log("VelocityIndex " + velocityindex);
+            Debug.Log("SampleIndex " + sampleindex);
+
+            mainCam.GetComponent<Vortex>().radius = new Vector2(sampleindex % 14, sampleindex % 13);
+            mainCam.GetComponent<Vortex>().center = new Vector2(sampleindex % 16, sampleindex % 18);
+            mainCam.GetComponent<Vortex>().angle =tempRand +(sampleindex * 4f);
+            dirLight.GetComponent<Light>().color = lightColors[sampleindex % 9];
+
 			AudioSource a_s;
 			if (melody.specifychannels)
 			{

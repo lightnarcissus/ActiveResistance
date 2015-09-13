@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityStandardAssets.ImageEffects;
 
 public class MarkovPlay : MelodyGenerator {
 	public int channels = 4;
-	
+    private GameObject playerCam;
 	public int samplecount = 10;
 	public int durationcount = 3;
 	public int frequencycount = 3;
@@ -87,6 +88,7 @@ public class MarkovPlay : MelodyGenerator {
 		{1,0,0,0,1,0,0,0,1,0,0,0},//augmented chord
 		{1,0,0,1,0,0,1,0,0,1,0,0},//diminished chord
 	};
+
 	
 	private GenericMelody melody;
 	// Use this for initialization
@@ -148,6 +150,7 @@ public class MarkovPlay : MelodyGenerator {
 		{
 			Debug.Log("melodic");
 			frequencycount=Random.Range(5,10);
+            MusicPlayer.mainCam.GetComponent<PP_ScreenWaves>().amplitude = frequencycount / 50f;
 			durationcount=Random.Range(2,3);
 			samplecount=Random.Range(2,4);
 		}
@@ -170,6 +173,10 @@ public class MarkovPlay : MelodyGenerator {
 			transposition = Random.Range(0,12);
 			Debug.Log("Scale = "+scale.ToString());
 			Debug.Log("Transposition = "+transposition.ToString());
+            Debug.Log(MusicPlayer.mainCam);
+        //    MusicPlayer.mainCam.GetComponent<Vortex>().radius = new Vector2(scale/3f, scale/3f);
+        //    MusicPlayer.mainCam.GetComponent<Vortex>().center = new Vector2(samplecount, samplecount/ 2f);
+          //  MusicPlayer.mainCam.GetComponent<Vortex>().angle = transposition * 30f;
 		}
 		else
 		{
