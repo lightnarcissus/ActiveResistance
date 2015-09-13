@@ -56,7 +56,7 @@ public class MusicPlayer : MonoBehaviour {
 		int channelindex=0;
         float tempRand = Random.Range(0f, 100f);
 		AudioSource[] audiosources = GetComponents<AudioSource>();
-		
+        mainCam.GetComponent<PP_LineArt>().lineColor = lightColors[(int)tempRand % 9];
 		while(true)
 		{
 			float pitch = melody.frequencies[pitchindex];
@@ -73,6 +73,8 @@ public class MusicPlayer : MonoBehaviour {
             mainCam.GetComponent<Vortex>().center = new Vector2(sampleindex % 16, sampleindex % 18);
             mainCam.GetComponent<Vortex>().angle =tempRand +(sampleindex * 4f);
             dirLight.GetComponent<Light>().color = lightColors[sampleindex % 9];
+            mainCam.GetComponent<PP_LineArt>().lineAmount = (sampleindex%10) * 500;
+            mainCam.GetComponent<PP_ScreenWaves>().amplitude = pitch/9f;
 
 			AudioSource a_s;
 			if (melody.specifychannels)
@@ -109,7 +111,7 @@ public class MusicPlayer : MonoBehaviour {
 	
 	public void Update()
 	{
-		if (Input.GetButtonDown("Jump"))
+		if (Input.anyKeyDown)
 		{
 			NewMelody();
 		}
