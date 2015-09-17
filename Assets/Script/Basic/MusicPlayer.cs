@@ -9,6 +9,8 @@ public class MusicPlayer : MonoBehaviour {
 
 	private List <MelodyGenerator> generators;
     public static GameObject mainCam;
+    public static int sampleIndex = 0;
+    public static int discomfort = 0;
     public Color[] lightColors = { Color.red, Color.black, Color.blue, Color.green, Color.cyan, Color.magenta, Color.yellow, Color.white, Color.clear };
     public GameObject dirLight;
 	public void Start()
@@ -73,9 +75,12 @@ public class MusicPlayer : MonoBehaviour {
             mainCam.GetComponent<Vortex>().center = new Vector2(sampleindex % 16, sampleindex % 18);
             mainCam.GetComponent<Vortex>().angle =tempRand +(sampleindex * 4f);
             dirLight.GetComponent<Light>().color = lightColors[sampleindex % 9];
-            mainCam.GetComponent<PP_LineArt>().lineAmount = (sampleindex%10) * 500;
+            mainCam.GetComponent<PP_LineArt>().lineAmount = (sampleindex%(10-discomfort) * 500);
             mainCam.GetComponent<PP_ScreenWaves>().amplitude = pitch/9f;
-
+            mainCam.transform.parent.gameObject.GetComponent<Gain>().level = discomfort;
+            mainCam.transform.parent.gameObject.GetComponent<Noise>().offset = discomfort/5f;
+            mainCam.transform.parent.gameObject.GetComponent<AudioDistortionFilter>().distortionLevel = discomfort/10f;
+            sampleIndex = sampleindex;
 			AudioSource a_s;
 			if (melody.specifychannels)
 			{
