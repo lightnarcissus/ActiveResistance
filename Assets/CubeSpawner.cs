@@ -14,7 +14,7 @@ public class CubeSpawner : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        if(Random.value<0.01f)
+        if(Random.value<0.005f)
         {
             randInt = Random.Range(0, 2);
             if (randInt == 0)

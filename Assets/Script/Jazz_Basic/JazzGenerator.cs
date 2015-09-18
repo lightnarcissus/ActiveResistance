@@ -25,7 +25,7 @@ public class JazzGenerator {
 		int lastnote=-1000;
 		int accompanimenttype=Random.Range(0,9);
 		float motheaten = Random.Range(0.25f,1.0f);
-		Debug.Log("moth% = " + motheaten.ToString());
+		//Debug.Log("moth% = " + motheaten.ToString());
 		melody = new List<int>();
 		accompaniment = new List<int>();
 		
@@ -177,7 +177,7 @@ public class JazzGenerator {
 		}
 		melody.Add(666);
 		
-		Debug.Log("melody length : " + melody.Count.ToString() + " - " + accompaniment.Count.ToString());
+		//Debug.Log("melody length : " + melody.Count.ToString() + " - " + accompaniment.Count.ToString());
 
 	}
 	

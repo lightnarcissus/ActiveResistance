@@ -40,7 +40,19 @@ public class MusicPlayer : MonoBehaviour {
 		StopCoroutine("GenerateMelody");
 		StartCoroutine("GenerateMelody");
 	}
-	
+
+    public void Jarring()
+    {
+        StartCoroutine("BlueAmber");
+    }
+
+    private IEnumerator BlueAmber()
+    {
+        mainCam.GetComponent<PP_StereoAnaglyph_AmberBlue>().enabled = true;
+        yield return new WaitForSeconds(1.5f);
+        mainCam.GetComponent<PP_StereoAnaglyph_AmberBlue>().enabled = false;
+        yield return null;
+    }
 	private IEnumerator GenerateMelody()
 	{
 		GenericMelody melody = Utility.RandomElement(generators).GenerateMelody();
@@ -69,16 +81,20 @@ public class MusicPlayer : MonoBehaviour {
             //Debug.Log("DurationIndex "+durationindex);
             //Debug.Log("PitchIndex " + pitchindex);
             //Debug.Log("VelocityIndex " + velocityindex);
-            Debug.Log("SampleIndex " + sampleindex);
+           // Debug.Log("SampleIndex " + sampleindex);
 
             mainCam.GetComponent<Vortex>().radius = new Vector2(sampleindex % 14, sampleindex % 13);
             mainCam.GetComponent<Vortex>().center = new Vector2(sampleindex % 16, sampleindex % 18);
             mainCam.GetComponent<Vortex>().angle =tempRand +(sampleindex * 4f);
             dirLight.GetComponent<Light>().color = lightColors[sampleindex % 9];
-            mainCam.GetComponent<PP_LineArt>().lineAmount = (sampleindex%(10-discomfort) * 500);
+            if (discomfort < 10)
+                mainCam.GetComponent<PP_LineArt>().lineAmount = (sampleindex % (10 - discomfort) * 500);
+            else
+                mainCam.GetComponent<PP_LineArt>().lineAmount = (sampleindex % 10 * 500);
             mainCam.GetComponent<PP_ScreenWaves>().amplitude = pitch/9f;
+            mainCam.GetComponent<NoiseAndGrain>().intensityMultiplier = discomfort;
             mainCam.transform.parent.gameObject.GetComponent<Gain>().level = discomfort;
-            mainCam.transform.parent.gameObject.GetComponent<Noise>().offset = discomfort/5f;
+            mainCam.transform.parent.gameObject.GetComponent<Noise>().offset = 2f- (discomfort / 5f);
             mainCam.transform.parent.gameObject.GetComponent<AudioDistortionFilter>().distortionLevel = discomfort/10f;
             sampleIndex = sampleindex;
 			AudioSource a_s;

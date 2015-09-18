@@ -117,7 +117,7 @@ public class MarkovPlay : MelodyGenerator {
 	
 	public override GenericMelody GenerateMelody()
 	{
-		Debug.Log("RANDOM SEED : " + Random.seed.ToString());
+		//Debug.Log("RANDOM SEED : " + Random.seed.ToString());
 		
 		minduration=0.01f;
 		maxduration=Random.Range(0.1f,2.0f);
@@ -132,23 +132,23 @@ public class MarkovPlay : MelodyGenerator {
 		subbarprob = Random.Range(0.0f,barprob);
 		beatcount = Random.Range(2,7);
 		barlength = Random.Range(1.0f,5.0f);
-		Debug.Log("bar length: " + barlength.ToString());
-		Debug.Log("beat count: " + beatcount.ToString());
-		Debug.Log("bar prob: " + barprob.ToString());
-		Debug.Log("beat prob: " + subbarprob.ToString());
+		//Debug.Log("bar length: " + barlength.ToString());
+		//Debug.Log("beat count: " + beatcount.ToString());
+		//Debug.Log("bar prob: " + barprob.ToString());
+		//Debug.Log("beat prob: " + subbarprob.ToString());
 		
 		if (proceedByDifferences)
 		{
-			Debug.Log("differences");
+			//Debug.Log("differences");
 		}
 		else
 		{
-			Debug.Log("nondifferences");
+			//Debug.Log("nondifferences");
 		}
 		
 		if (melodic)
 		{
-			Debug.Log("melodic");
+			//Debug.Log("melodic");
 			frequencycount=Random.Range(5,10);
             MusicPlayer.mainCam.GetComponent<PP_ScreenWaves>().amplitude = frequencycount / 50f;
 			durationcount=Random.Range(2,3);
@@ -156,31 +156,31 @@ public class MarkovPlay : MelodyGenerator {
 		}
 		else
 		{
-			Debug.Log("not melodic");
+			//Debug.Log("not melodic");
 			frequencycount=Random.Range(1,3);
 			durationcount=Random.Range(2,5);
 			samplecount=Random.Range(5,10);
 		}
 		
 		detune = Random.Range(Mathf.Pow(2.0f,-5.0f/12.0f),Mathf.Pow(2.0f,5.0f/12.0f));
-		Debug.Log("detune by " + detune.ToString());
+		//Debug.Log("detune by " + detune.ToString());
 		
 		if (diatonic)
 		{
-			Debug.Log("diatonic");
+			//Debug.Log("diatonic");
 			
 			scale = Random.Range(0,scales.GetLength(0));
 			transposition = Random.Range(0,12);
-			Debug.Log("Scale = "+scale.ToString());
-			Debug.Log("Transposition = "+transposition.ToString());
-            Debug.Log(MusicPlayer.mainCam);
+			//Debug.Log("Scale = "+scale.ToString());
+			//Debug.Log("Transposition = "+transposition.ToString());
+            //Debug.Log(MusicPlayer.mainCam);
         //    MusicPlayer.mainCam.GetComponent<Vortex>().radius = new Vector2(scale/3f, scale/3f);
         //    MusicPlayer.mainCam.GetComponent<Vortex>().center = new Vector2(samplecount, samplecount/ 2f);
           //  MusicPlayer.mainCam.GetComponent<Vortex>().angle = transposition * 30f;
 		}
 		else
 		{
-			Debug.Log("not diatonic");
+			//Debug.Log("not diatonic");
 		}		
 		
 		sounds = RandomSublist(allsounds,samplecount);
@@ -190,11 +190,11 @@ public class MarkovPlay : MelodyGenerator {
 		{
 //			if (maxduration<0.5)
 //				maxduration*=2;
-			Debug.Log("Beaty");
+			//Debug.Log("Beaty");
 		}
 		else
 		{			
-			Debug.Log("Not Beaty");
+			//Debug.Log("Not Beaty");
 		}
 		durations = new List<float>();
 		for (int i=0;i<durationcount;i++)
@@ -223,7 +223,7 @@ public class MarkovPlay : MelodyGenerator {
 			int range = Random.Range(0,4);
 			range=1;
 
-			Debug.Log("range = " + range.ToString());
+			//Debug.Log("range = " + range.ToString());
 			int low=0;
 			int high=0;
 			switch(range)
@@ -359,9 +359,9 @@ public class MarkovPlay : MelodyGenerator {
 		leadinstrument = Random.Range(0,sounds.Count);	
 		leadspread = Random.Range(1,5);
 		leadpasses = Random.Range(1,4);
-		Debug.Log("leadspread " + leadspread.ToString());
-		Debug.Log("leadpasses " + leadpasses.ToString());
-		Debug.Log("leadreplaceprob " + leadreplaceprob.ToString());
+		//Debug.Log("leadspread " + leadspread.ToString());
+		//Debug.Log("leadpasses " + leadpasses.ToString());
+		//Debug.Log("leadreplaceprob " + leadreplaceprob.ToString());
 		if (hasleadinstrument && (frequencies.Count>2))
 		{
 			for (int t=0;t<leadpasses;t++)
@@ -385,7 +385,7 @@ public class MarkovPlay : MelodyGenerator {
 			}
 		}
 		
-		Debug.Log("history lengths : " + soundhistory.Count.ToString() + " , " + durationhistory.Count.ToString());
+		//Debug.Log("history lengths : " + soundhistory.Count.ToString() + " , " + durationhistory.Count.ToString());
 		soundlocation=0;
 		frequencylocation=0;
 		durationlocation=0;

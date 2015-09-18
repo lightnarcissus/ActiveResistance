@@ -10,8 +10,11 @@ public class ChangeShape : MonoBehaviour {
     public Mesh plane;
     public Mesh quad;
     public Mesh wrench;
+    private GameObject player;
 	// Use this for initialization
 	void Start () {
+
+        player = GameObject.Find("FPSController");
 	
 	}
 	
@@ -64,7 +67,9 @@ public class ChangeShape : MonoBehaviour {
     {
         if (col.gameObject.name == "Collider")
         {
-            MusicPlayer.discomfort++;
+            if(MusicPlayer.discomfort<=9)
+                 MusicPlayer.discomfort++;
+            player.GetComponent<MusicPlayer>().Jarring();
             Destroy(this.gameObject);
         }
     }
