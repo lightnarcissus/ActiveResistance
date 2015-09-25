@@ -139,7 +139,7 @@ public class MotivicGenerator : MelodyGenerator {
 		
 		int scale = Random.Range(0,scales.GetLength(0));
 		int scale_key = Random.Range(0,12);
-		Debug.Log(scale);
+		//Debug.Log(scale);
 
 		for (int v=0;v<motives.Count;v++)
 		{

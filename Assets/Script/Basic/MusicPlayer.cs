@@ -48,9 +48,12 @@ public class MusicPlayer : MonoBehaviour {
 
     private IEnumerator BlueAmber()
     {
+        mainCam.transform.parent.gameObject.GetComponent<Sinus>().enabled = true;
+        mainCam.transform.parent.gameObject.GetComponent<Sinus>().frequency = Random.Range(400f, 1400f);
         mainCam.GetComponent<PP_StereoAnaglyph_AmberBlue>().enabled = true;
         yield return new WaitForSeconds(1.5f);
         mainCam.GetComponent<PP_StereoAnaglyph_AmberBlue>().enabled = false;
+        mainCam.transform.parent.gameObject.GetComponent<Sinus>().enabled = false;
         yield return null;
     }
 	private IEnumerator GenerateMelody()

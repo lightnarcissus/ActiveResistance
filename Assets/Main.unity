@@ -688,8 +688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7c774027c53d240aa1941568cf255b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 440
-  gain: .050000000000000003
+  frequency: 590
+  gain: 1.2
 --- !u!114 &1865593121
 MonoBehaviour:
   m_ObjectHideFlags: 0
